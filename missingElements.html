@@ -1,0 +1,40 @@
+<?php
+/*Given a list of ordered distinct integers from [0-99] summarize missing elements in string format. 
+Input: [0,1,2,50,52,75] Output: "3-49,51,53-74,76-99"  */
+error_reporting(0);
+class test
+{	
+	public static function missingRange($arr)
+	{	
+		//Set flag to notify that missing range has begun
+		$limitStart = false;
+
+		//result string
+		$final = '';
+
+		for($i = 0; $i < count($arr); $i++){
+			//check if the missing range has already been set
+			if($limitStart){
+				$final .= $arr[$i] - 1 . ', ';
+			}
+
+			//wind up if last element of array
+			if($i == count($arr) - 1){
+				$final .= $arr[$i] + 1 . '-99';
+			}
+
+			//check to see when the range begins
+			if($i + 1 < count($arr)){
+				if( (($arr[$i + 1]) - $arr[$i]) > 2 ){
+					$limitStart = true;
+					$final .= $arr[$i] + 1 . '-';
+				}
+			}
+		}
+		return $final;
+	}
+}
+
+$arr = [0,1,2,50,52,75];
+echo test::missingRange($arr);
+?>
