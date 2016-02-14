@@ -10,6 +10,9 @@ class Run
 		$index = -1;
 		//echo $str . '<br />';		
 		$str_arr = str_split($str);
+		if(count($str_arr) < 2){
+			return 1;
+		}
 		
 		for($i = 0; $i < count($str_arr); $i++){
 			if($i < count($str_arr)-1){
@@ -22,7 +25,7 @@ class Run
 					//echo ', No match, the run was: ' . $run . ' ';
 					if($run > $max_run){
 						$max_run = $run;
-						$max_in = $i - ($run-1);
+						$max_in = $i - $run;
 					}
 					$run = 0;
 				}
@@ -37,6 +40,5 @@ class Run
 
 // For testing purposes (do not submit uncommented):
 
-echo Run::indexOfLongestRun('abbcccddddcccbba');
-
+echo Run::indexOfLongestRun('a');
 ?>
