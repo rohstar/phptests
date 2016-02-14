@@ -18,6 +18,11 @@ class test
 				$final .= $arr[$i] - 1 . ', ';
 			}
 
+			//Check if it's the first element and how many it's missing
+			if($i == 0 && $arr[$i] != 0){
+				$final .= ' 0-' . ($arr[$i] - 1) . ',';
+			}
+
 			//wind up if last element of array
 			if($i == count($arr) - 1){
 				$final .= $arr[$i] + 1 . '-99';
